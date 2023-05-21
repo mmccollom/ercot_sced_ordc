@@ -1,0 +1,23 @@
+Transform: 'AWS::Serverless-2016-10-31'
+Description: >
+  SAM Template
+Resources:
+  Function:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: ercot_sced_ordc
+      Description: >
+        Lambda function that scrapes the previous day SCED ORDC from ERCOT's website every 24 hours
+      Handler: main.lambda_handler
+      MemorySize: 2048
+      Runtime: python3.7
+      Timeout: 300
+      Policies:
+        - AmazonS3FullAccess
+        - AWSLambdaBasicExecutionRole
+      Events:
+        Schedule:
+          Type: Schedule
+          Properties:
+            Name: Ercot5MinuteORDCDownload
+            Schedule: cron(0 13 ? * * *)

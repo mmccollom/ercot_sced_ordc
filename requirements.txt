@@ -1,0 +1,6 @@
+ercotutils==1.0.0
+requests==2.30.0
+pandas==1.3.5
+pytz==2023.3
+urllib3<2
+pyarrow==12.0.0
